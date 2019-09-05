@@ -1,5 +1,6 @@
 import React from 'react'
-import { Container, Row, Col, Card, CardBody } from 'reactstrap';
+import { Container, Row, Col, Card, CardBody,CardHeader } from 'reactstrap';
+import RegisterForm from '../registerPage/RegisterForm'
 import './RegisterPages.scss'
 import logo from '../../../assets/img/logo.png'
 
@@ -27,8 +28,11 @@ export class RegisterPage extends React.Component {
                     </Col>
                     <Col md="6" className="mt-5 mt-md-0">
                         <Card>
+                            <CardHeader>
+                                <h4>Formulario de Registro</h4>
+                            </CardHeader>
                             <CardBody>
-                                {/* <RegisterForm {...this.props} /> */}
+                                <RegisterForm/>
                             </CardBody>
                         </Card>
                     </Col>
