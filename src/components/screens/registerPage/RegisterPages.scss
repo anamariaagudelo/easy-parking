@@ -1,0 +1,17 @@
+.Register-page{
+    .intro-card{
+        height: 100%;
+        .card-body{
+            padding-top: 0px;
+            margin: auto;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        .img-intro{
+            padding: 20px;
+        }
+    }
+}

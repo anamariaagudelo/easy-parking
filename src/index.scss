@@ -1,0 +1,37 @@
+// Fonts
+// --------------------------------------------------
+
+@font-face{
+	font-family:'Raleway-LightItalic';
+	src:url('http://www.s4n.co/fonts/Raleway-LightItalic.eot') format('embedded-opentype'),
+		url('http://www.s4n.co/fonts/Raleway-LightItalic.woff') format('woff'),
+		url('http://www.s4n.co/fonts/Raleway-LightItalic.ttf') format('truetype');
+    font-weight:normal;
+	font-style:normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: Raleway, "Helvetica Neue", Helvetica, Arial;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@import 'bootstrap/scss/bootstrap.scss';
+
+@media screen and (max-width: 991px) {
+  .hidden-sm {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+}
