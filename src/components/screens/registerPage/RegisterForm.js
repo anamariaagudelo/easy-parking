@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
@@ -10,47 +10,35 @@ export class RegisterForm extends Component {
     this.handleValidSubmit = this.handleValidSubmit.bind(this);
     this.handleInvalidSubmit = this.handleInvalidSubmit.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.state = {email: false};
+    this.state = { email: false };
   }
 
-  componentWillMount(){}
+  componentWillMount() { }
 
   handleValidSubmit(event, values) {
-    this.setState({email: values.email});
+    event.preventDefault();
+    const data = {
+      userName: values.name,
+      userLastName: values.lastName,
+      userEmail: values.email,
+      userPhone: values.numberPhone,
+      userAddress: values.address,
+      userPass: values.password
+    }
+    fetch(`http://localhost:8080/user/register`, {
+      method: 'post',
+      body: JSON.stringify(data)
+    })
+    this.setState({ email: values.email });
   }
 
   handleInvalidSubmit(event, errors, values) {
-    this.setState({email: values.email, error: true});
+    this.setState({ email: values.email, error: true });
   }
 
   closeModal() {
-    this.setState({email: false, error: false});
+    this.setState({ email: false, error: false });
   }
-
-  // handleValidSubmit(event, values) {
-  //   this.setState({ userName: values.name });
-  //   this.setState({ userLastName: values.lastName});
-  //   this.setState({ userEmail: values.email });
-  //   this.setState({ userPhone: values.numberPhone});
-  //   this.setState({ userAddress: values.address });
-  //   this.setState({ userPass: values.password});
-  // }
-
-  // handleValidSubmit (evento, values) {
-  //   evento.preventDefault();
-  // console.log(values.name);
-  //   fetch (`http://localhost:8080/user/register`, {
-  //     method: 'post',
-  //     body: {
-  //       "userName": values.name, 
-  //       "userLastName":values.lastName,
-  //       "userEmail":values.email,
-  //       "userPhone": values.numberPhone,
-  //       "userAddress": values.address,
-  //       "userPass": values.password,
-  //     }
-  //   })
-  // }
   render() {
     const modalError = this.state.error ? 'not' : '';
     return (
