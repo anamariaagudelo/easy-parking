@@ -15,9 +15,7 @@ export class RegisterPage extends React.Component {
                             <img src={logo} alt="S4N_LOGO" className="img-intro card-img-top"/>
                             <CardBody>
                                 <div>
-                                    <h4>Bienvenido a Eisy parking</h4>
-                                    <br/>
-                                    <p>Proyecto para el curso Ingeniería de Procesos de Software</p>
+                                    <h4>Welcome to Eisy parking</h4>
                                     <h6>Orvie</h6>
                                     <h6>Jakeline</h6>
                                     <h6>Ana María</h6>
@@ -29,7 +27,7 @@ export class RegisterPage extends React.Component {
                     <Col md="6" className="mt-5 mt-md-0">
                         <Card>
                             <CardHeader>
-                                <h4>Formulario de Registro</h4>
+                                <h4>Register Form</h4>
                             </CardHeader>
                             <CardBody>
                                 <RegisterForm/>
