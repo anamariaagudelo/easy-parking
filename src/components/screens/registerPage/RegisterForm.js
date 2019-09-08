@@ -10,23 +10,50 @@ export class RegisterForm extends React.Component {
     this.handleValidSubmit = this.handleValidSubmit.bind(this);
     this.handleInvalidSubmit = this.handleInvalidSubmit.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.state = {email: false,
-    name: false};
+    this.state = {
+      userName: false,
+      userLastName: false,
+      userEmail: false,
+      userPhone: false,
+      userAddress: false,
+      userPass: false
+    };
   }
 
-  handleValidSubmit(event, values) {
-    this.setState({email: values.email});
+  // handleValidSubmit(event, values) {
+  //   this.setState({ userName: values.name });
+  //   this.setState({ userLastName: values.lastName});
+  //   this.setState({ userEmail: values.email });
+  //   this.setState({ userPhone: values.numberPhone});
+  //   this.setState({ userAddress: values.address });
+  //   this.setState({ userPass: values.password});
+  // }
+
+  handleValidSubmit (evento, values) {
+    evento.preventDefault();
+  console.log(values.name);
+    fetch (`http://localhost:8080/user/register`, {
+      method: 'post',
+      body: {
+        "userName": values.name, 
+        "userLastName":values.lastName,
+        "userEmail":values.email,
+        "userPhone": values.numberPhone,
+        "userAddress": values.address,
+        "userPass": values.password,
+      }
+    })
   }
 
   handleInvalidSubmit(event, errors, values) {
-    this.setState({email: values.email, error: true});
+    this.setState({ email: values.email, error: true });
   }
 
   closeModal() {
-    this.setState({email: false, error: false});
+    this.setState({ email: false, error: false });
   }
   render() {
-    const modalError = this.state.error ? 'not' : ''; 
+    const modalError = this.state.error ? 'not' : '';
     return (
       <Form>
         <AvForm onValidSubmit={this.handleValidSubmit} onInvalidSubmit={this.handleInvalidSubmit}>
@@ -36,10 +63,10 @@ export class RegisterForm extends React.Component {
           <AvField name="numberPhone" label="Number Phone" type="text" required />
           <AvField name="address" label="Address" type="text" required />
           <AvField name="password" label="Password" type="password" required />
-          <br/>
-          <br/>
-          <Button type="submit" color="primary" block>REGISTER</Button> 
-          <br/>
+          <br />
+          <br />
+          <Button type="submit" color="primary" block>REGISTER</Button>
+          <br />
         </AvForm>
         <Modal isOpen={this.state.email !== false} toggle={this.closeModal}>
           <ModalHeader toggle={this.closeModal}>Form is {modalError} valid!</ModalHeader>
