@@ -1,48 +1,35 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { AvForm, AvField } from 'availity-reactstrap-validation';
-import { Button, Form, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 
-export class RegisterForm extends React.Component {
+export class RegisterForm extends Component {
   constructor(props) {
     super(props);
 
     this.handleValidSubmit = this.handleValidSubmit.bind(this);
     this.handleInvalidSubmit = this.handleInvalidSubmit.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.state = {
-      userName: false,
-      userLastName: false,
-      userEmail: false,
-      userPhone: false,
-      userAddress: false,
-      userPass: false
-    };
+    this.state = { email: false };
   }
 
-  // handleValidSubmit(event, values) {
-  //   this.setState({ userName: values.name });
-  //   this.setState({ userLastName: values.lastName});
-  //   this.setState({ userEmail: values.email });
-  //   this.setState({ userPhone: values.numberPhone});
-  //   this.setState({ userAddress: values.address });
-  //   this.setState({ userPass: values.password});
-  // }
+  componentWillMount() { }
 
-  handleValidSubmit (evento, values) {
-    evento.preventDefault();
-  console.log(values.name);
-    fetch (`http://localhost:8080/user/register`, {
+  handleValidSubmit(event, values) {
+    event.preventDefault();
+    const data = {
+      userName: values.name,
+      userLastName: values.lastName,
+      userEmail: values.email,
+      userPhone: values.numberPhone,
+      userAddress: values.address,
+      userPass: values.password
+    }
+    fetch(`http://localhost:8080/user/register`, {
       method: 'post',
-      body: {
-        "userName": values.name, 
-        "userLastName":values.lastName,
-        "userEmail":values.email,
-        "userPhone": values.numberPhone,
-        "userAddress": values.address,
-        "userPass": values.password,
-      }
+      body: JSON.stringify(data)
     })
+    this.setState({ email: values.email });
   }
 
   handleInvalidSubmit(event, errors, values) {
@@ -55,7 +42,7 @@ export class RegisterForm extends React.Component {
   render() {
     const modalError = this.state.error ? 'not' : '';
     return (
-      <Form>
+      <div>
         <AvForm onValidSubmit={this.handleValidSubmit} onInvalidSubmit={this.handleInvalidSubmit}>
           <AvField name="name" label="Name" type="text" required />
           <AvField name="lastName" label="Last Name" type="text" required />
@@ -77,7 +64,7 @@ export class RegisterForm extends React.Component {
             <Button color="primary" onClick={this.closeModal}>Ok!</Button>
           </ModalFooter>
         </Modal>
-      </Form>
+      </div>
     );
   }
 }
