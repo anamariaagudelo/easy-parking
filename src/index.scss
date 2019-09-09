@@ -22,7 +22,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+input[type=text],input[type=email], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
 
+button[type=submit] {
+  background-color: rgb(28, 179, 199);
+  width: 100%;
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+button[type=button] {
+  background-color: rgba(184, 186, 212, 0.952);
+  width: 100%;
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 @import 'bootstrap/scss/bootstrap.scss';
 
 @media screen and (max-width: 991px) {
