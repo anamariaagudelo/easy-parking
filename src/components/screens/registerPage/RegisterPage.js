@@ -3,9 +3,38 @@ import { Container, Row, Col, Card, CardBody,CardHeader } from 'reactstrap';
 import RegisterForm from '../registerPage/RegisterForm'
 import './RegisterPages.scss'
 import logo from '../../../assets/img/logo.png'
+import {SubmissionError} from 'redux-form'
 
 
 export class RegisterPage extends React.Component {
+
+    handleSubmit = (value) =>{
+        if(value.name !== 'anny'){
+            throw new SubmissionError({
+                name: 'Name no es anny'
+            })
+        }
+    }
+    handleValidSubmit(value) {
+        const data = {
+          userName: 'ana',
+          userLastName: 'agudelo',
+          userEmail: 'values.email@gmail.com',
+          userPhone: '123456',
+          userAddress: '23sdfg',
+          userPass: '234567'
+        }
+        fetch(`http://localhost:8080/user/register`, {
+          method: 'post',
+          body: JSON.stringify(data)
+        })
+      }
+
+    getInitialValues = ()=>{
+        return{
+            name: '',
+        }
+    }
     render() {
         return (
             <Container className="Register-page mt-2 mt-md-5 ">
@@ -30,7 +59,10 @@ export class RegisterPage extends React.Component {
                                 <h4>Register Form</h4>
                             </CardHeader>
                             <CardBody>
-                                <RegisterForm/>
+                                <RegisterForm
+                                onSubmit={this.handleValidSubmit}
+                                initialValues={this.getInitialValues()}
+                                />
                             </CardBody>
                         </Card>
                     </Col>
