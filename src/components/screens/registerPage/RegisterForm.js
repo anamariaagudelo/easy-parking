@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form'
 import { required, maxLength, minLength, number, email, aol } from '../../UI/ValidatorField'
 import { customInput } from '../../UI/CustomInput'
 
-const FieldLevelValidationForm = (props) => {
+const RegisterForm = (props) => {
   const { handleSubmit, pristine, reset, submitting, onClick } = props
   return (
     <form onSubmit={handleSubmit} className="input">
@@ -42,5 +42,5 @@ const FieldLevelValidationForm = (props) => {
 }
 
 export default reduxForm({
-  form: 'fieldLevelValidation'
-})(FieldLevelValidationForm)
+  form: 'RegisterForm'
+})(RegisterForm)
